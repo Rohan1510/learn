@@ -2,28 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A sleek and modern Hello World web application showcasing standard modern HTML5, CSS3, and JavaScript.">
-  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="An endless Dino Net runner game with retro visuals, sound effects, day/night cycle, and high score tracking.">
+  <title>Dino Runner - Offline Net Game</title>
   <link rel="stylesheet" href="styles/main.css">
   <script src="scripts/main.js" defer></script>
 </head>
 <body>
-  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
-  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
 
-  <main class="container">
-    <section class="hero-card">
-      <span class="badge">Web Application</span>
-      <h1 id="main-heading" class="title">Hello, World!</h1>
-      <p id="sub-heading" class="subtitle">
-        Welcome to modern HTML5 & CSS3 web development.
-      </p>
-      <button id="interactive-btn" class="cta-button" type="button">
-        Explore Greetings
-      </button>
-      <p id="status-msg" class="status-text" aria-live="polite"></p>
-    </section>
+  <main class="game-wrapper">
+    <header class="game-header">
+      <div class="header-left">
+        <span class="game-tag">OFFLINE ARCADE</span>
+        <h1 class="game-title">T-REX RUNNER</h1>
+      </div>
+      <div class="header-actions">
+        <button id="sound-btn" class="icon-btn" type="button" aria-label="Toggle Sound" title="Toggle Sound (M)">
+          <span id="sound-icon" class="btn-icon">🔊</span>
+        </button>
+        <button id="pause-btn" class="icon-btn" type="button" aria-label="Pause Game" title="Pause Game (P)">
+          <span id="pause-icon" class="btn-icon">⏸</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="game-card">
+      <div class="score-board">
+        <div class="score-item">
+          <span class="score-label">HI</span>
+          <span id="high-score-display" class="score-value">00000</span>
+        </div>
+        <div class="score-item current-score-box">
+          <span class="score-label">SCORE</span>
+          <span id="current-score-display" class="score-value">00000</span>
+        </div>
+      </div>
+
+      <div class="canvas-container" id="canvas-container">
+        <canvas id="game-canvas" width="900" height="300"></canvas>
+
+        <div id="start-overlay" class="overlay overlay-start">
+          <div class="overlay-content">
+            <div class="pixel-badge">READY TO RUN</div>
+            <h2 class="overlay-title">PRESS SPACE OR TAP</h2>
+            <p class="overlay-subtitle">Jump over cacti &amp; duck under pterodactyls</p>
+            <button id="start-btn" class="play-btn" type="button">START GAME</button>
+          </div>
+        </div>
+
+        <div id="game-over-overlay" class="overlay overlay-game-over hidden">
+          <div class="overlay-content">
+            <div class="game-over-tag">CRASHED!</div>
+            <h2 class="overlay-title">GAME OVER</h2>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-name">Score</span>
+                <span id="final-score" class="stat-val">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-name">Best</span>
+                <span id="final-best" class="stat-val">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-name">Obstacles Cleared</span>
+                <span id="final-obstacles" class="stat-val">0</span>
+              </div>
+            </div>
+            <button id="restart-btn" class="play-btn" type="button">PLAY AGAIN</button>
+          </div>
+        </div>
+
+        <div id="pause-overlay" class="overlay overlay-pause hidden">
+          <div class="overlay-content">
+            <h2 class="overlay-title">PAUSED</h2>
+            <p class="overlay-subtitle">Press P or Space to Resume</p>
+            <button id="resume-btn" class="play-btn" type="button">RESUME</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="touch-controls" id="touch-controls">
+        <button id="touch-duck-btn" class="touch-btn touch-duck" type="button" aria-label="Duck">
+          <span>⬇ DUCK</span>
+        </button>
+        <button id="touch-jump-btn" class="touch-btn touch-jump" type="button" aria-label="Jump">
+          <span>⬆ JUMP</span>
+        </button>
+      </div>
+
+      <footer class="game-instructions">
+        <div class="key-guide">
+          <span class="key-pill">SPACE</span> / <span class="key-pill">▲</span> Jump
+        </div>
+        <div class="key-guide">
+          <span class="key-pill">▼</span> / <span class="key-pill">S</span> Duck
+        </div>
+        <div class="key-guide">
+          <span class="key-pill">P</span> Pause
+        </div>
+        <div class="key-guide">
+          <span class="key-pill">M</span> Mute
+        </div>
+      </footer>
+    </div>
   </main>
 </body>
 </html>
