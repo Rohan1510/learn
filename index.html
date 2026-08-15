@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="An endless Dino Net runner game with retro visuals, sound effects, day/night cycle, and high score tracking.">
-  <title>Dino Runner - Offline Net Game</title>
+  <meta name="description" content="A fast-paced retro space arcade shooter with dynamic waves, bosses, weapon power-ups, and audio synthesis.">
+  <title>Cyber Strike - Space Arcade Shooter</title>
+=======
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A sleek and modern Hello World web application showcasing standard modern HTML5, CSS3, and JavaScript.">
+  <title>Main Production Version</title>
+>>>>>>> main
   <link rel="stylesheet" href="styles/main.css">
   <script src="scripts/main.js" defer></script>
 </head>
@@ -14,8 +20,8 @@
   <main class="game-wrapper">
     <header class="game-header">
       <div class="header-left">
-        <span class="game-tag">OFFLINE ARCADE</span>
-        <h1 class="game-title">T-REX RUNNER</h1>
+        <span class="game-tag">ARCADE SHOOTER</span>
+        <h1 class="game-title">CYBER STRIKE</h1>
       </div>
       <div class="header-actions">
         <button id="sound-btn" class="icon-btn" type="button" aria-label="Toggle Sound" title="Toggle Sound (M)">
@@ -28,81 +34,106 @@
     </header>
 
     <div class="game-card">
-      <div class="score-board">
-        <div class="score-item">
-          <span class="score-label">HI</span>
-          <span id="high-score-display" class="score-value">00000</span>
+      <div class="hud-bar">
+        <div class="hud-group">
+          <div class="shield-container">
+            <span class="hud-label">SHIELD</span>
+            <div class="shield-bar-bg">
+              <div id="shield-bar-fill" class="shield-bar-fill"></div>
+            </div>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">WAVE</span>
+            <span id="wave-display" class="hud-val">1</span>
+          </div>
         </div>
-        <div class="score-item current-score-box">
-          <span class="score-label">SCORE</span>
-          <span id="current-score-display" class="score-value">00000</span>
+
+        <div class="hud-group">
+          <div class="hud-item">
+            <span class="hud-label">HI</span>
+            <span id="high-score-display" class="hud-val">00000</span>
+          </div>
+          <div class="hud-item current-score-box">
+            <span class="hud-label">SCORE</span>
+            <span id="score-display" class="hud-val highlight">00000</span>
+          </div>
         </div>
       </div>
 
       <div class="canvas-container" id="canvas-container">
-        <canvas id="game-canvas" width="900" height="300"></canvas>
+        <canvas id="game-canvas" width="800" height="500"></canvas>
 
         <div id="start-overlay" class="overlay overlay-start">
           <div class="overlay-content">
-            <div class="pixel-badge">READY TO RUN</div>
-            <h2 class="overlay-title">PRESS SPACE OR TAP</h2>
-            <p class="overlay-subtitle">Jump over cacti &amp; duck under pterodactyls</p>
-            <button id="start-btn" class="play-btn" type="button">START GAME</button>
+            <div class="pixel-badge">DEFEND DEEP SPACE</div>
+            <h2 class="overlay-title">CYBER STRIKE</h2>
+            <p class="overlay-subtitle">Eliminate alien fleets &amp; defeat incoming Boss cruisers!</p>
+            <div class="powerup-preview">
+              <span class="badge-tag">⚡ Triple Shot</span>
+              <span class="badge-tag">🛡️ Energy Shield</span>
+              <span class="badge-tag">💥 Plasma Bomb</span>
+            </div>
+            <button id="start-btn" class="play-btn" type="button">LAUNCH MISSION</button>
           </div>
         </div>
 
         <div id="game-over-overlay" class="overlay overlay-game-over hidden">
           <div class="overlay-content">
-            <div class="game-over-tag">CRASHED!</div>
+            <div class="game-over-tag">SHIP DESTROYED</div>
             <h2 class="overlay-title">GAME OVER</h2>
             <div class="stats-grid">
               <div class="stat-card">
-                <span class="stat-name">Score</span>
+                <span class="stat-name">Final Score</span>
                 <span id="final-score" class="stat-val">0</span>
               </div>
               <div class="stat-card">
-                <span class="stat-name">Best</span>
-                <span id="final-best" class="stat-val">0</span>
+                <span class="stat-name">Waves Cleared</span>
+                <span id="final-wave" class="stat-val">0</span>
               </div>
               <div class="stat-card">
-                <span class="stat-name">Obstacles Cleared</span>
-                <span id="final-obstacles" class="stat-val">0</span>
+                <span class="stat-name">Enemies Destroyed</span>
+                <span id="final-kills" class="stat-val">0</span>
               </div>
             </div>
-            <button id="restart-btn" class="play-btn" type="button">PLAY AGAIN</button>
+            <button id="restart-btn" class="play-btn" type="button">REDEPLOY</button>
           </div>
         </div>
 
         <div id="pause-overlay" class="overlay overlay-pause hidden">
           <div class="overlay-content">
-            <h2 class="overlay-title">PAUSED</h2>
-            <p class="overlay-subtitle">Press P or Space to Resume</p>
+            <h2 class="overlay-title">MISSION PAUSED</h2>
+            <p class="overlay-subtitle">Press P or Resume to continue</p>
             <button id="resume-btn" class="play-btn" type="button">RESUME</button>
           </div>
         </div>
       </div>
 
       <div class="touch-controls" id="touch-controls">
-        <button id="touch-duck-btn" class="touch-btn touch-duck" type="button" aria-label="Duck">
-          <span>⬇ DUCK</span>
-        </button>
-        <button id="touch-jump-btn" class="touch-btn touch-jump" type="button" aria-label="Jump">
-          <span>⬆ JUMP</span>
-        </button>
+        <div class="touch-nav-group">
+          <button id="touch-left-btn" class="touch-btn" type="button" aria-label="Move Left">◀</button>
+          <button id="touch-right-btn" class="touch-btn" type="button" aria-label="Move Right">▶</button>
+        </div>
+        <div class="touch-action-group">
+          <button id="touch-bomb-btn" class="touch-btn touch-bomb" type="button" aria-label="Bomb">💣 BOMB</button>
+          <button id="touch-fire-btn" class="touch-btn touch-fire" type="button" aria-label="Fire">🔥 FIRE</button>
+        </div>
       </div>
 
       <footer class="game-instructions">
         <div class="key-guide">
-          <span class="key-pill">SPACE</span> / <span class="key-pill">▲</span> Jump
+          <span class="key-pill">◄</span> <span class="key-pill">►</span> / <span class="key-pill">A</span> <span class="key-pill">D</span> Move
         </div>
         <div class="key-guide">
-          <span class="key-pill">▼</span> / <span class="key-pill">S</span> Duck
+          <span class="key-pill">SPACE</span> Fire Lasers
+        </div>
+        <div class="key-guide">
+          <span class="key-pill">B</span> / <span class="key-pill">E</span> Smart Bomb
         </div>
         <div class="key-guide">
           <span class="key-pill">P</span> Pause
         </div>
         <div class="key-guide">
-          <span class="key-pill">M</span> Mute
+          <span class="key-pill">M</span> Sound
         </div>
       </footer>
     </div>
